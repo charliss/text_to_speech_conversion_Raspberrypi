@@ -1,0 +1,37 @@
+#  REal time text to speech conversion using Raspberrypi!
+import cv2
+import os
+import pytesseract
+from PIL import Image
+from gtts import gTTS
+from picamera import PiCamera
+from time import sleep
+camera = PiCamera()
+
+language = 'en'
+
+# ///////////////////////taking image 
+camera.start_preview()
+sleep(7)
+camera.stop_preview()
+
+camera.capture('/home/pi/Desktop/image.jpg')
+camera.stop_preview()
+img = cv2.imread('/home/pi/Desktop/image.jpg',cv2.IMREAD_COLOR) #Open the image from which charectors has to be recognized
+img = cv2.resize(img, (620,480) ) #resize the image if required
+
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #convert to grey to reduce detials
+gray = cv2.bilateralFilter(gray, 11, 17, 17) #Blur to reduce noise
+
+text= pytesseract.image_to_string(gray, config='')
+myobj = gTTS(text=text, lang=language, slow=False) 
+print(myobj)
+# Saving the converted audio in a mp3 file named 
+# welcome  
+myobj.save("myobj.mp3") 
+
+os.system("mpg321 myobj.mp3") 
+# original.save("audio.mp3")
+  
+# Playing the converted file 
+os.system("mpg321 original.mp3") 
