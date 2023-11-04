@@ -2,7 +2,7 @@
 its a task related to text to speech conversion using Raspberrypi
 
 
-
+Little bit Help if you struck anywhere 
 https://maker.pro/raspberry-pi/projects/speech-recognition-using-google-speech-api-and-python
 
 https://www.pubnub.com/blog/text-to-speech-audio-broadcast-with-raspberry-pi/
@@ -17,7 +17,6 @@ modprobe snd-bcm2835
 amixer
 ///ocr
 
-https://circuitdigest.com/microcontroller-projects/optical-character-recognition-ocr-using-tesseract-on-raspberry-pi
 sudo dpkg - -configure –a
 sudo apt-get install tesseract-ocr
 Pip install pytesseract
